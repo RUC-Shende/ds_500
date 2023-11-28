@@ -1,0 +1,341 @@
+---
+title: Week 2
+jupyter: python3
+number-sections: true
+---
+## Outline
+
+This week, we take a deeper dive into basic data types in Python,
+conditional statements and loops, and simple function definitions.
+
+- Expressions
+- Strings
+- Assignments and Bindings
+- Function definitions (basics)
+- `if-elif-else` statements
+- `for` loops
+- `while` loops
+
+## Bookmark these sites!
+
+The official [Python Documentation](https://docs.python.org/3/index.html). From here you can navigate to:
+
+- The [Python Tutorial](https://docs.python.org/3/tutorial/index.html)
+
+- The [Python Standard Library](https://docs.python.org/3/library/index.html)
+
+- The [Python Module Index](https://docs.python.org/3/py-modindex.html)
+
+## Expressions
+
+Expressions are composed from variables, values and **operators**. Some examples of operators are:
+
+- Arithmetic operators: `+`, `-`, `/` (true division), `//` (integer division leaving a quotient), `*`, `%` (remainder in integer division) etc.
+
+- Logical operators: `and`, `or`, `not` etc.
+
+- Sequence operators: `[]` (indexing or slicing), `+` (concatenation), `*` (replication) etc.
+
+- Call expressions: using previously defined **functions**.
+
+::: {.callout-note}
+Datatypes are implemented in Python as **classes**.
+Functions that are associated with a datatype value are called **methods**.
+:::
+
+### Exercise: Leap Year Calculation
+
+A year is a **leap** year if it is divisible by 4 but not divisible by 100 unless it is divisible by 400. For instance, 2004 is a leap year, 1900 is not, but 2000 is.
+
+Suppose that a variable `year` holds an integer that represents a year. Construct an expression that would be true if and only if `year` is a leap year.
+
+```{python}
+# Ask user to input a year and store the integer in variable `year`
+
+# Construct the expression for `year` being a leap year
+```
+
+## Expression Evaluation
+
+The Python interpreter **evaluates** expressions in the context of an **environment**.
+
+> **Environment:** Collection of **bindings** of names to values.
+
+Python's environment is **dynamic**: every added definition or assignment changes it!
+
+All **builtin** bindings (e.g., functions like `len`, `bin`, `str`, `int`) are available to the interpreter in the **main environment**.
+
+## Strings
+
+Python's strings are **Unicode** strings: symbols from all known languages, glyphs and synthesized symbols can be used in a Python string! For instance: `'\u03C0'`, `'\U0001f644'`
+
+Internally, strings are **encoded** into bytes, e.g., using the UTF-8 encoding. Printing a string involves **decoding** the string.
+
+::: {.callout-note}
+Data can occur in all kinds of formats/encodings. It is important to understand
+some of the history of encodings: even if you might not understand some of the
+details, please check out
+[Ned Batchelder's PyCon 2012 presentation](https://youtu.be/sgHbC6udIqc) on
+Unicode in Python.
+:::
+
+- **Immutable**: Operations on string operands create *new* strings.
+
+Examples of string operations: length, concatenation, replication, indexing, slicing.
+
+### Exercise
+
+```{python}
+# Start with the string x whose value is 'Data '.
+
+# Find its length.
+
+# Obtain the string y with value 'Data Science' from x
+
+# Replicate y 5 times
+
+# Find the index of the second occurrence of 'a' in y
+
+# Find the string made up of every other character from y
+```
+
+A **program** in Python is a sequence of statements that are evaluated from top to bottom.
+
+::: {.callout-important}
+Evaluation of a statement causes one or more of the following effects:
+
+- change in state of existing variable(s): **new binding(s)**
+- addition of new variables to the current environment's namespace: **new definitions**
+- creation of a **new frame** as a result of a **function call**
+:::
+
+## Assignment Statement
+
+::: {.callout-tip}
+Use the [Python Tutor](www.pythontutor.com) website to visualize the **binding** of values to names in a Python code snippet!
+:::
+
+- Assignments bind names to values
+
+- Binding is **dynamic**: the type of a value always remains unchanged, but the same name may refer to different values (and hence different types) at different times during the program execution.
+
+### Exercise
+
+Compute the approximate acceleration of gravity for an object above the earth's surface, assigning `accel_gravity` with the result. The expression for the acceleration of gravity is: $(G \cdot M) / (d^2)$, where $G$ is the gravitational constant $6.673 \times 10^{-11}$, $M$ is the mass of the earth $5.98 \times 10^{24}$ (in kg), and $d$ is the distance in meters from the Earth's center (stored in variable `dist_center`).
+
+Your code should ask for the distance to be entered as input, and should print the acceleration accurate to 2 decimal places.
+
+## `import` statement
+
+Main purpose:  augment the *current namespace* with additional name bindings obtained from the module being imported.
+
+- add definitions of constants, functions and data types (classes) from built-in Python libraries
+
+- add auxiliary code developed for an application
+
+::: {.callout-warning}
+Avoid **namespace pollution**: use qualified names via **dot** notation,
+e.g., `math.pi`
+:::
+
+### Exercise
+
+Import the `fractions` module.
+
+- Use the `dir` builtin function to see what is defined in the module
+
+- Use the `help` builtin function to get **documentation** on a specific definition, e.g. the `fractions.Fraction` datatype
+
+- Experiment with different operations on fractions
+
+## Function Definition
+
+Encapsulates a piece of computation whose outcome (**return value**)
+depends on the supplied inputs (**parameters** or **arguments**)
+
+Separation of code into functional units allows us to:
+
+- **compose** functions in a *modular* fashion
+- create clean interfaces between parts of code
+- practice the **DRY** principle (Don't repeat yourself)
+- **test** code in small, manageable units
+
+### Exercise
+
+- Define a function that computes the hypotenuse of a right-angle triangle given its legs by using the Pythagorean theorem.
+
+- Follow documentation guidelines: create a **docstring**
+
+- Use the `doctest` module to create simple tests for the function within the docstring.
+
+::: {.callout-notes}
+1. The `pass` statement is a **placeholder** and does nothing!
+
+2. Never test two real (i.e. `float`) values for equality! Use `math.isclose` instead.
+:::
+
+```{python}
+def hypotenuse(leg_1, leg_2):
+    pass
+```
+
+## Selection statement: `if-elif-else`
+
+Sometimes referred to as a **multi-way branch**.
+
+```python
+if <condition 1>:
+    <code block 1>
+elif <condition 2>:
+    <statement block 2>
+...
+else:
+    <default code block>
+```
+
+- `<code block 1>` is **only evaluated** if `<condition 1>` is True
+
+- In general, `<code block n>` is **only evaluated** if **all** the conditions for preceding blocks are `False` and `<condition n>` is `True`
+
+- If control reaches `else`, `<default code block>` is executed.
+
+- Control flows out of the selection statement after a selected code block (or the default block) is executed.
+
+### Exercise
+
+The surface gravity on the Moon is $1.62 ~m/s^2$; on Mars, it is $3.711 ~m/s^2$; and on Earth it is $9.807 ~m/s^2$.
+Write a Python script that
+asks the user to enter either "Moon", "Earth" or "Mars" at a prompt, and computes the weight in Newtons
+of a 180 lb. person on that planetary body.
+
+```{python}
+
+```
+
+## `for` Loops
+
+```python
+for <var> in <iterable collection>:
+    <code block>
+```
+- `<var>` is also called the **loop control target**.
+
+- At the start of each iteration, `<var>` is bound to the **next value** from the `<iterable collection>`. When there is no such value available, control flows out of the loop.
+
+- During the iteration, the `<code block>` of code is executed. Then control flows back to the beginning of the loop.
+
+### Exercise
+
+Write a function that takes a non-negative integer as an argument. It should return a count of the number of even digits in the number.
+
+```{python}
+def count_even_digits(num):
+    """Returns number of even digits in num
+
+    Args:
+        num (int): a non-negative integer
+
+    Returns:
+        int
+    """
+    pass
+```
+
+### Exercise: Reading test files
+
+Write a program that reads a text file `alice_wonderland.txt` in the same directory as the program (e.g., the notebook). It should print the percentage of lines that mention **Alice**.
+
+::: {.callout-note}
+The builtin `open` function can be used to open a text file for reading from or writing into the file. The resulting object provides an **iterable collection** of **lines** in the file.
+:::
+
+```{python}
+
+```
+
+## `while` loop
+
+This implememts **indefinite** iteration controlled by a boolean condition (called a **predicate**):
+
+```python
+while <condition>:
+    <code block>
+```
+
+- `<condition>` is tested at the beginning of an iteration
+
+- if `True`, the iteration proceeds by executing `<code block>`. Flow of control then reverts back to beginning of the loop.
+
+- if `False`, control flows out of the loop
+
+## `break` and `continue` statements
+
+`break` or `continue` statements may occur inside a loop body.
+
+- `break`: Immediately **terminates** the nearest enclosing loop: if it is a `for` loop, the loop control target keeps its current value.
+
+- `continue`: Forces control to revert to the start of the next iteration of the loop.
+
+### Exercise
+
+Define a function that takes as input parameters a text file and a string.
+The function should print the first line, if any, that contains the given string as a substring.
+It should return the number of lines read before such a line (if it exists) is found.
+
+::: {.callout-warning}
+Filenames, when written as strings, are often **paths** in the underlying operating system. It is bad practice to pass such paths to functions that expect name of files! Do so only when you know that the file is in the same directory as the program.
+:::
+
+```{python}
+def find_string(filename, phrase):
+    """Returns the number of lines in the file prior to the first occurrence of phrase.
+
+    The function also prints the first line that contains the phrase
+
+    Args:
+        filename (str): name of text file in the program's directory
+        phrase (str): the phrase being searched
+
+    Returns:
+        int
+    """
+    pass
+```
+
+
+### Exercise
+
+Define a function that takes as argument a non-negative integer and returns the
+sum of the **individual digits** of its argument.
+
+```{python}
+def sum_of_digits(n):
+    """Returns the sum of the digits on n
+
+    Args:
+        n (int): non-negative integer
+
+    Returns:
+        int
+    """
+    pass
+```
+
+
+### Exercise
+
+From Wikipedia:
+
+> The Collatz conjecture is a conjecture in mathematics that concerns a sequence
+    defined as follows: start with any positive integer n. Then each term is obtained from
+    the previous term as follows: if the previous term is even, the next term is one half
+    of the previous term. If the previous term is odd, the next term is 3 times the previous       term plus 1. The conjecture is that no matter what value of n, the sequence
+    will always reach 1.
+
+Ask the user to input a non-negative integer $x$, and determine the length of $x$'s Collatz sequence (which starts at $x$ and ends at $1$).
+
+### Exercise
+
+Use the `random` module to compute the approximate value of $\pi$.
+
+**Intution:** Throw darts randomly (but uniformly) in a square with side length 2. Count the proportion of darts that land in the **incircle** for the square (i.e., the inscribed circle).

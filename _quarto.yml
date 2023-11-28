@@ -1,0 +1,28 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - about.qmd
+    - index.qmd
+    - syllabus.qmd
+    - "week*.qmd"
+
+
+website:
+  title: "Data Science 500"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    html-math-method: katex
+    toc: true
+  pdf:
+    documentclass: report
+    margin-left: 1in
+    margin-right: 1in

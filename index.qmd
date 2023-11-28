@@ -1,0 +1,20 @@
+---
+title: "Data Science 500"
+---
+This course is cross-listed in three graduate programs at Rutgers-Camden: Data Science, CCIB and Computer Science (as a deficiency course). The overall goal is to provide a foundational introduction to programming in Python in a variety of Data Science and scientific computing application contexts. More broadly, students will be exposed to computational thinking, the basics of statistical inference and reasoning about data, and to software engineering best practices in program development, testing and documentation.
+
+::: {.callout-note}
+This is a hands-on course that requires the student to put in hours of practice and become proficient in the use of some standard tools and libraries in the Python programming ecosystem.
+:::
+
+## Contents
+
+- [Syllabus](syllabus.qmd)
+- [Week 1](week1.qmd)
+- [Week 2](week2.qmd)
+- [Week 3](week3.qmd)
+- [Week 4](week4.qmd)
+- [Week 5](week5.qmd)
+- [Week 6](week6.qmd)
+- [Weeks 7 and 8](weeks7-8.qmd)
+- [Weeks 10 and 11](week10-11.qmd)

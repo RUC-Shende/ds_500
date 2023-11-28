@@ -1,0 +1,30 @@
+/* css styles */
+
+blockquote {
+    font-style: italic;
+  }
+  tr.even {
+    background-color: #f0f0f0;
+  }
+  td, th {
+    padding: 0.5em 2em 0.5em 0.5em;
+  }
+  tbody {
+    border-bottom: none;
+  }
+  h1 {
+    color: red;
+  }
+  h2 {
+    color: green;
+  }
+  h3 {
+    color: blue;
+  }
+  a {
+    color: magenta;
+    text-decoration: none;
+  }
+  a:hover {
+    color: red;
+  }
