@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Science 500 - Weeks 7 and 8</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Data Science 500</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#outline" id="toc-outline" class="nav-link active" data-scroll-target="#outline"><span class="header-section-number">1</span> Outline</a></li>
+  <li><a href="#ides-for-code-development" id="toc-ides-for-code-development" class="nav-link" data-scroll-target="#ides-for-code-development"><span class="header-section-number">2</span> IDEs for Code Development</a>
+  <ul class="collapse">
+  <li><a href="#popular-ides" id="toc-popular-ides" class="nav-link" data-scroll-target="#popular-ides"><span class="header-section-number">2.1</span> Popular IDEs</a></li>
+  </ul></li>
+  <li><a href="#recursion" id="toc-recursion" class="nav-link" data-scroll-target="#recursion"><span class="header-section-number">3</span> Recursion</a>
+  <ul class="collapse">
+  <li><a href="#example-1-factorial" id="toc-example-1-factorial" class="nav-link" data-scroll-target="#example-1-factorial"><span class="header-section-number">3.1</span> Example 1: Factorial</a></li>
+  <li><a href="#example-2-reversing-a-string" id="toc-example-2-reversing-a-string" class="nav-link" data-scroll-target="#example-2-reversing-a-string"><span class="header-section-number">3.2</span> Example 2: Reversing a string</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">3.3</span> Exercises</a></li>
+  <li><a href="#example-3-recursion-on-one-argument" id="toc-example-3-recursion-on-one-argument" class="nav-link" data-scroll-target="#example-3-recursion-on-one-argument"><span class="header-section-number">3.4</span> Example 3: Recursion on one argument</a></li>
+  <li><a href="#example-4-harder-partitions-of-a-set-into-k-parts" id="toc-example-4-harder-partitions-of-a-set-into-k-parts" class="nav-link" data-scroll-target="#example-4-harder-partitions-of-a-set-into-k-parts"><span class="header-section-number">3.5</span> Example 4 (Harder): Partitions of a set into <span class="math inline">k</span> parts</a></li>
+  </ul></li>
+  <li><a href="#code-testing" id="toc-code-testing" class="nav-link" data-scroll-target="#code-testing"><span class="header-section-number">4</span> Code Testing</a>
+  <ul class="collapse">
+  <li><a href="#example-blackbox-testing" id="toc-example-blackbox-testing" class="nav-link" data-scroll-target="#example-blackbox-testing"><span class="header-section-number">4.1</span> Example: Blackbox testing</a></li>
+  <li><a href="#test-infrastructure" id="toc-test-infrastructure" class="nav-link" data-scroll-target="#test-infrastructure"><span class="header-section-number">4.2</span> Test Infrastructure</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="weeks7-8.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Weeks 7 and 8</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="outline" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="outline"><span class="header-section-number">1</span> Outline</h2>
+<ul>
+<li>Using an IDE for developing code in modules.</li>
+<li>Practice with recursion and designing recursive functions.</li>
+<li>Introduction to Code Testing (using <code>pytest</code>)</li>
+</ul>
+</section>
+<section id="ides-for-code-development" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="ides-for-code-development"><span class="header-section-number">2</span> IDEs for Code Development</h2>
+<p>While Jupyter notebooks are a great way to experiment with code snippets and to provide annotations and explanatory commentary on the code, it is usually better to develop the code in the form of Python modules (<code>.py</code> files).</p>
+<p>Once modules are defined, their namespaces (defined objects, functions, classes etc.) can be <code>import</code>ed in other modules or even in a Jupyter notebook!</p>
+<section id="popular-ides" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="popular-ides"><span class="header-section-number">2.1</span> Popular IDEs</h3>
+<p>There are several Integrated Development Environments (IDEs) where Python code for modules that are part of a project or package can be <strong>developed</strong>, <strong>executed</strong>, <strong>debugged</strong> and <strong>tested</strong>. IDEs also provide support for formatting the code, in a manner similar to what the notebook code cells do.</p>
+<p>Among the most popular IDEs are the following:</p>
+<ul>
+<li><code>IDLE</code>: the native, frills-free IDE that comes bundled with every Python installation</li>
+<li><code>PyCharm</code>: a proprietary IDE</li>
+<li><code>VS Code</code>: an industry standard IDE</li>
+<li><code>Spyder</code>: part of the <code>Anaconda</code> distribution but can also be installed separately.</li>
+</ul>
+</section>
+</section>
+<section id="recursion" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="recursion"><span class="header-section-number">3</span> Recursion</h2>
+<p>A recursive function is defined in terms of <strong>itself</strong>; more specifically:</p>
+<ul>
+<li><p>it is defined <em>without further self-reference</em> for the <strong>base case(s)</strong> of the argument, viz.&nbsp;when the arguments are small enough.</p></li>
+<li><p>for larger arguments, it is defined in terms of its values on specific <strong>smaller</strong> arguments.</p></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Most recursive functions have base cases associated with the small integers 0, 1, 2 etc. The larger arguments are associated with larger integers: see, for example, the recursive function definition below.</p>
+</div>
+</div>
+<section id="example-1-factorial" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="example-1-factorial"><span class="header-section-number">3.1</span> Example 1: Factorial</h3>
+<p>Consider the <strong>factorial</strong> function defined for all <span class="math inline">n \geq 0</span> as: <span class="math display">f(n) = n \cdot (n-1) \cdot (n-2) \ldots 1</span></p>
+<p>Observe that the definition is understood by a <em>human</em> reader as saying: Form the product of successive descending numbers starting from <span class="math inline">n</span>, then <span class="math inline">(n-1)</span>, then <span class="math inline">(n-2)</span> <strong>and so on</strong> going down to 1!</p>
+<p>A recursive specification would instead say that <span class="math inline">f(1)</span> equals 1 for the base case when <span class="math inline">n=1</span>. For larger values of <span class="math inline">n</span>, we multiply <span class="math inline">n</span> with the result of the <em>recursive</em> computation <span class="math inline">f(n-1)</span> to obtain <span class="math inline">f(n)</span>. Here is what the code might look like:</p>
+<div class="cell" data-execution_count="1">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(n: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Returns the factorial of n &gt;= 1</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n <span class="op">*</span> f(n<span class="op">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Two observations can be made about this example, one generic and one specific.</p>
+<ul>
+<li><strong>Specific:</strong> The function exhibits <em>tail-recursion</em>, i.e.&nbsp;the stack of successive recursive function calls <strong>unwinds</strong> completely after the base case has been reached! Such function definitions can easily be converted to <strong>loops</strong>! See the code below:</li>
+</ul>
+<div class="cell" data-execution_count="2">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(n: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:  <span class="co"># Alternative factorial definition</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Returns the factorial of n &gt;= 1"""</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> num <span class="kw">in</span> <span class="bu">reversed</span>(<span class="bu">range</span>(<span class="dv">1</span>, n<span class="op">+</span><span class="dv">1</span>)):</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> num <span class="op">*</span> result</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li><strong>Generic:</strong> Recursive calls are always made to <strong>smaller</strong> arguments. In this example, it is clear because we are dealing with numbers. In general, the idea of <em>smaller</em> extends to any collection of values that can be <strong>well-ordered</strong>, namely, values that are totally ordered and have a <strong>least</strong> element among any subset of elements. See the example below.</li>
+</ul>
+</section>
+<section id="example-2-reversing-a-string" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="example-2-reversing-a-string"><span class="header-section-number">3.2</span> Example 2: Reversing a string</h3>
+<p>Let’s define a recursive Python function to <strong>reverse</strong> a string. It is based on the observation that the reverse of a string named <code>text</code> is the concatenation of the last symbol <code>text</code> and the <strong>reverse</strong> of the string obtained by removing the last character of <code>text</code>. Note that this latter string is <em>smaller</em>, viz.&nbsp;it has length 1 less than the length of <code>text</code>. The <strong>smallest</strong> string is clearly well defined: it is the empty string and happens to be its own reverse.</p>
+<div class="cell" data-execution_count="3">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> reverse(text: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Returns the string obtained by reversing the symbols of text."""</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(text) <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> text</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> text[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> reverse(text[:<span class="op">-</span><span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="exercises" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="exercises"><span class="header-section-number">3.3</span> Exercises</h3>
+<p>Define the following functions recursively. <em>Do not look at the code until you have tried it yourself</em>!</p>
+<ol type="1">
+<li>Count the number of transitions in a bitstring, i.e., the number of times we see an instance of <code>01</code> or <code>10</code> in a string containing just 0s and 1s.</li>
+</ol>
+<div class="cell" data-execution_count="4">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> n_transitions(bitstring: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Returns the number of transitions in a non-empty bitstring.</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">    A transition is an instance of `01` or `10`</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(bitstring) <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    l_bit <span class="op">=</span> bitstring[<span class="dv">0</span>]</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    transition_bit <span class="op">=</span> <span class="st">'0'</span> <span class="cf">if</span> l_bit <span class="op">==</span> <span class="st">'1'</span> <span class="cf">else</span> <span class="st">'1'</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    posn <span class="op">=</span> bitstring.find(transition_bit)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> posn <span class="op">==</span> <span class="op">-</span><span class="dv">1</span>:  <span class="co"># no transition found in bitstring</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Count transitions from posn onwards recursively and add 1</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">+</span> n_transitions(bitstring[posn:])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="3" type="1">
+<li>Reverse the “words” in a string, e.g., <code>recursion is easy</code> becomes <code>easy is recursion</code>. You can assume that any maximal sequence of characters without a whitespace character is a “word”.</li>
+</ol>
+</section>
+<section id="example-3-recursion-on-one-argument" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="example-3-recursion-on-one-argument"><span class="header-section-number">3.4</span> Example 3: Recursion on one argument</h3>
+<p>Suppose we wish to define the multiplication of two integers <strong>without</strong> being able to use the multiply operator, but only using addition or subtraction.</p>
+<p>Let’s see the reasoning for non-negative integers, and we can then generalize to all integers. There are two arguments, call them <code>a</code> and <code>b</code>. We will recurse <strong>only on </strong> <code>b</code>!</p>
+<ul>
+<li><p>What is the simplest <strong>base</strong> case, i.e., where we <strong>do not have to rely</strong> on any mathematical operation for the result?</p></li>
+<li><p>What is the simplest <em>general</em> form of the recursive case that allows as to multiply <code>a</code> and <code>b</code> with just addition and the result of a recursive call with a smaller second argument (in place of <code>b</code>)?</p></li>
+</ul>
+<p>Once you have thought through these questions, try to see if you write a recursive definition based on your answers. One possible solution is below:</p>
+<div class="cell" data-execution_count="5">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> multiply(a: <span class="bu">int</span>, b: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Returns a * b.</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> b <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">+</span> multiply(a, b<span class="op">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Here is a similar example of recursing just on one argument. Suppose we wish to compute the result of raising a floating point number to an non-negative integer power.</p>
+<div class="cell" data-execution_count="6">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> exponentiation(base: <span class="bu">float</span>, exponent: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Returns base ** exponent.</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> exponent <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> base <span class="op">*</span> exponentiation(base, exponent<span class="op">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="example-4-harder-partitions-of-a-set-into-k-parts" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="example-4-harder-partitions-of-a-set-into-k-parts"><span class="header-section-number">3.5</span> Example 4 (Harder): Partitions of a set into <span class="math inline">k</span> parts</h3>
+<p>A common combinatorial structure is the collection of <strong>k-partitions of a set of <span class="math inline">n</span></strong> objects. In any such partition, every element of the set appears in exactly one part of the partition. For example, we can partition the letters “abcd” into 2 parts in the following three ways: “ab” and “cd”; “ac” and “bd”; “ad” and “bc”. Note that there is no ordering of letters within a part and no ordering among the parts: the partition with parts “ab” and “cd” is the same as that with parts “dc” and “ba”.</p>
+<p>Let’s assume that we are forming partitions of the symbols in a given string with unique symbols (these are the objects in the partitions). To make things even more concrete, each part will be a non-empty string, and each partition will be a tuple of such parts. Finally, any symbols that appear in a part will appear <em>in the same order</em> as in the given string.</p>
+<p>Thus, we can say unambiguously that we want our function to create a set containing the seven partitions:</p>
+<p><code>('a', 'bcd'), ('ab', 'cd'), ('abc', 'd'), ('ac', 'bd'), ('acd', 'b'), ('ad', 'bc'), ('abd', 'c')</code></p>
+<p>when given the arguments <code>'abcd'</code> and 2, i.e.&nbsp;when it is asked to produce the set of all partitions of size 2 of the four symbols.</p>
+<p>Note that there are <strong>two arguments</strong> here so we have to be careful about using an <em>ordering</em> of the combined arguments! We can think of the arguments as a tuple: the first a string of some finite length <span class="math inline">n</span> (the number of symbols/elements of the set) and the second, an integer <span class="math inline">k</span> indicating the number of parts in a partition.</p>
+<p>The recursion here comes from a combinatorial argument: any partition of the set of objects <span class="math inline">b_0, b_1, \ldots b_{n-1}</span> into <span class="math inline">k &gt; 1</span> parts must fall into one of two <strong>disjoint</strong> categories:</p>
+<ol type="1">
+<li><p>there is a part which <strong>only contains</strong> <span class="math inline">b_0</span>: if we can obtain <strong>recursively</strong>, the set of partitions of <span class="math inline">b_1, b_2, \ldots b_{n-1}</span> into <span class="math inline">(k-1)</span> parts, we can augment each such partition by adding an additional part that only contains <span class="math inline">b_0</span>.</p></li>
+<li><p>every part that contains <span class="math inline">b_0</span> also contains another object: if we can obtain <strong>recursively</strong>, the set of partitions of <span class="math inline">b_1, b_2, \ldots b_{n-1}</span> into <span class="math inline">k</span> parts, we can augment each such partition in <span class="math inline">k</span> ways by inserting <span class="math inline">b_0</span> into one of the <span class="math inline">k</span> parts.</p></li>
+</ol>
+<p>Look carefully at the parameters of the recursive calls, and you observe that in the first case, the call will have as first parameter a <em>smaller</em> set with <span class="math inline">(n-1)</span> elements and as second parameter, a <em>smaller</em> number of parts <span class="math inline">(k-1)</span>. On the other hand, in the second case, the recursive call will have as first parameter a <em>smaller</em> set with <span class="math inline">(n-1)</span> elements and as second parameter, the <em>same</em> number of parts <span class="math inline">k</span>.</p>
+<p>If we think of the values <span class="math inline">n</span> and <span class="math inline">k</span> as forming a tuple, we see that in <strong>both cases</strong>, we are making a recursive call that features a <strong>smaller</strong> tuple, where the notion of smaller has to do with <strong>lexicographic</strong> ordering: e.g. (4,2) is larger than both (3,1) and (3,2); and in turn, (3,2) will be larger than (2,1) and (2,2) etc.</p>
+<p>A little more thought should convince you that the recursion can <strong>stop</strong> when <span class="math inline">k=1</span> or when <span class="math inline">n=k</span>. In the first instance, we just obtain the one-part partition with all the elements, and in the second, we obtain an <span class="math inline">n</span>-part partition with singleton elements as parts!</p>
+<p>The code that formalizes these observations follows quite naturally:</p>
+<div class="cell" data-execution_count="7">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> partitions(elements: <span class="bu">str</span>, k: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">set</span>:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Returns the list of k-partitions of elements.</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Each part is non-empty!</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">        elements (str): set represented by a string with unique elements</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">        k (int): number of parts in a partition</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">        set[tuple[str, ...]]: k-tuples, each with non-empty components</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> k <span class="op">==</span> <span class="dv">1</span>:  <span class="co"># the first base case</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">set</span>([elements])</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> k <span class="op">==</span> <span class="bu">len</span>(elements):  <span class="co"># the second base case</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">set</span>([<span class="bu">tuple</span>(elements)])</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the recursive argument!</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="bu">set</span>()</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> a_partition <span class="kw">in</span> partitions(elements[<span class="dv">1</span>:], k<span class="op">-</span><span class="dv">1</span>):  <span class="co"># case 1</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        lst <span class="op">=</span> [elements[<span class="dv">0</span>]] <span class="op">+</span> <span class="bu">list</span>(a_partition)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        result.add(<span class="bu">tuple</span>(lst))</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> a_partition <span class="kw">in</span> partitions(elements[<span class="dv">1</span>:], k):  <span class="co"># case 2</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(k):</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>            lst <span class="op">=</span> <span class="bu">list</span>(a_partition)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>            lst[i] <span class="op">=</span> elements[<span class="dv">0</span>] <span class="op">+</span> lst[i]</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>            result.add(<span class="bu">tuple</span>(lst))</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</section>
+<section id="code-testing" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="code-testing"><span class="header-section-number">4</span> Code Testing</h2>
+<p>Whether a piece of code runs correctly or not, is based on the <strong>specifications</strong> for the code. There are essentially three kinds of testing regimens:</p>
+<ul>
+<li><strong>Blackbox</strong> testing: develop the tests based purely on the specifications. The tests, often called unit tests, can be constructed even before the code is written!</li>
+</ul>
+<p>We will see an example of black-box testing for our <code>partitions</code> function.</p>
+<ul>
+<li><p><strong>Inline</strong> testing: Unlike traditional testing that is looking for some sort of input-output consistency, inline testing relies on being able to construct <strong>invariants</strong> associated with the <strong>state</strong> of the program on a generic input.</p></li>
+<li><p><strong>Whitebox</strong> testing: This is the kind of testing associated with trying to <strong>review</strong> code for correctness. As a side-effect, it helps us determine where complexity in the code can be simplified, based on the <em>flow-of-control</em> through the code on various inputs.</p></li>
+</ul>
+<p>In a large project with multiple functional parts, unit-testing is first applied to individual functions. More robust black-box testing can help identify errors that are caused by <strong>integration</strong> of various independently developed functions.</p>
+<section id="example-blackbox-testing" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="example-blackbox-testing"><span class="header-section-number">4.1</span> Example: Blackbox testing</h3>
+<p>The simplest way to set up tests is via <code>assert</code> statements where the code checks whether a condition that <strong>ought to be true</strong> is indeed true as implemented!</p>
+<p>Let’s look at the specification of the <code>partitions</code> function above to try and identify some tests that, if successful on a particular implementation of the function, would give us some confidence in the correctness of the implementation. Here is the docstring:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>partitions(elements: <span class="bu">str</span>, k: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">set</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    Returns the <span class="bu">list</span> of k<span class="op">-</span>partitions of elements.</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    Each part <span class="kw">is</span> non<span class="op">-</span>empty<span class="op">!</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    Args:</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        elements (<span class="bu">str</span>): <span class="bu">set</span> represented by a string <span class="cf">with</span> unique elements</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        k (<span class="bu">int</span>): number of parts <span class="kw">in</span> a partition</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    Returns:</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="bu">set</span>[<span class="bu">tuple</span>[<span class="bu">str</span>, ...]]: k<span class="op">-</span>tuples, each <span class="cf">with</span> non<span class="op">-</span>empty components</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol type="1">
+<li>Test the <strong>boundary</strong> case when <code>k</code> equals 1</li>
+</ol>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All five elements in one part of the 1-partition</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>partns1 <span class="op">=</span> partitions(<span class="st">'abcde'</span>, <span class="dv">1</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">len</span>(partns1) <span class="op">==</span> <span class="dv">1</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">len</span>(partns1.pop()) <span class="op">==</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>Test the <strong>boundary</strong> case when the size of <code>elements</code> equals <code>k</code>:</li>
+</ol>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Every element in its own part of the unique 5-partition</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>partns2 <span class="op">=</span> partitions(<span class="st">'abcde'</span>, <span class="dv">5</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">len</span>(partns2) <span class="op">==</span> <span class="dv">1</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>letters <span class="op">=</span> <span class="bu">tuple</span>(<span class="st">'abcde'</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>solo_partition <span class="op">=</span> partns2.pop()</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> letter <span class="kw">in</span> <span class="bu">tuple</span>(<span class="st">'abcde'</span>):</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> letter <span class="kw">in</span> solo_partition</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>Consider a case that can be easily analyzed, e.g., all partitions of <code>abcde</code> into 2 parts. Any such partition will have of course have 2 non-empty parts, and all the elements must be in one part or the other but not both. This translates to ensuring that the sum of the lengths of the parts in every partition equals 5:</li>
+</ol>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>partns <span class="op">=</span> partitions(<span class="st">'abcde'</span>, <span class="dv">2</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">all</span>(<span class="bu">len</span>(part1 <span class="op">+</span> part2) <span class="op">==</span> <span class="dv">5</span> <span class="cf">for</span> part1, part2 <span class="kw">in</span> partns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li>Furthermore, a simple combinatorial analysis can be used to <strong>count</strong> the number of such partitions of <code>abcde</code> into 2 parts. Choosing one part automatically fixes the other part (remember that order is not important). So the only possibilities are for one part to have a single element and the other have 4, or one part to have 2 elements and the other have 3. Hence, the number of partitions is:</li>
+</ol>
+<p><span class="math display">\binom{5}{1} + \binom{5}{2} = 5 + 10 = 15</span></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>partns <span class="op">=</span> partitions(<span class="st">'abcde'</span>, <span class="dv">2</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">len</span>(partns) <span class="op">==</span> <span class="dv">15</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="test-infrastructure" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="test-infrastructure"><span class="header-section-number">4.2</span> Test Infrastructure</h3>
+<p>Recall that there are two ways to organize code in modules:</p>
+<ul>
+<li><p>create definitions in the module so that the module (and its namespace) can be imported and used elsewhere, or</p></li>
+<li><p>create a stand-alone <strong>script</strong> that can be executed directly by the interpreter.</p></li>
+</ul>
+<p>Blackbox testing is meant for importable modules, not scripts.</p>
+<section id="testing-using-the-main-block" class="level4" data-number="4.2.1">
+<h4 data-number="4.2.1" class="anchored" data-anchor-id="testing-using-the-main-block"><span class="header-section-number">4.2.1</span> Testing using the “<strong>main</strong>” block</h4>
+<p>We can add an auxiliary <strong>main</strong> block at the end of the module to test the module contents:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">"__name__"</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>code <span class="cf">for</span> testing definitions <span class="kw">in</span> the module<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In this block, we can either:</p>
+<ul>
+<li><p>use <strong>doctests</strong> via the <code>doctest</code> module. Note that these tests are often very limited and depend heavily on the exact string representation of the result.</p></li>
+<li><p>use <code>assert</code> statements as shown in the example above.</p></li>
+</ul>
+</section>
+<section id="test-function-suites" class="level4" data-number="4.2.2">
+<h4 data-number="4.2.2" class="anchored" data-anchor-id="test-function-suites"><span class="header-section-number">4.2.2</span> Test function suites</h4>
+<p>This is the preferred and more robust mechanism to test a target module, and the tests are typically organized as follows:</p>
+<pre><code>target_module.py
+tests
+├── test_fn1.py
+├── test_fn2.py
+└── ...</code></pre>
+<p>In this example, the <code>test_fn*.py</code> modules contain suites of tests meant to test various parts of <code>target_module.py</code>; each discrete test is generally implemented by a small function. We will use the third-party <code>pytest</code> package in such a test framework. Please install the package via <code>pip</code> on your laptops for next week!</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
