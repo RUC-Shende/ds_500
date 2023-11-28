@@ -1,0 +1,7 @@
+---
+title: "About"
+---
+This is the website for the Fall 2023 edition of
+**Data Science 500** (56:219:500).
+The course is also cross-listed as **CS 500** (56:198:500) and
+**CCIB 530** (56:121:530).
