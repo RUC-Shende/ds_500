@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Science 500 - Weeks 10 and 11</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Data Science 500</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#object-oriented-programming-oop" id="toc-object-oriented-programming-oop" class="nav-link active" data-scroll-target="#object-oriented-programming-oop"><span class="header-section-number">1</span> Object-Oriented Programming (OOP)</a></li>
+  <li><a href="#classes-objects-and-constructors" id="toc-classes-objects-and-constructors" class="nav-link" data-scroll-target="#classes-objects-and-constructors"><span class="header-section-number">2</span> Classes, Objects and Constructors</a></li>
+  <li><a href="#instance-attributes-and-methods" id="toc-instance-attributes-and-methods" class="nav-link" data-scroll-target="#instance-attributes-and-methods"><span class="header-section-number">3</span> Instance Attributes and Methods</a></li>
+  <li><a href="#special-methods" id="toc-special-methods" class="nav-link" data-scroll-target="#special-methods"><span class="header-section-number">4</span> Special Methods</a></li>
+  <li><a href="#iterators-and-generators" id="toc-iterators-and-generators" class="nav-link" data-scroll-target="#iterators-and-generators"><span class="header-section-number">5</span> Iterators and Generators</a>
+  <ul class="collapse">
+  <li><a href="#triangle-version-1" id="toc-triangle-version-1" class="nav-link" data-scroll-target="#triangle-version-1"><span class="header-section-number">5.1</span> Triangle: Version 1</a></li>
+  <li><a href="#triangle-version-2" id="toc-triangle-version-2" class="nav-link" data-scroll-target="#triangle-version-2"><span class="header-section-number">5.2</span> Triangle: Version 2</a></li>
+  <li><a href="#generator-functions-and-expressions" id="toc-generator-functions-and-expressions" class="nav-link" data-scroll-target="#generator-functions-and-expressions"><span class="header-section-number">5.3</span> Generator functions and expressions</a></li>
+  <li><a href="#generating-infinite-streams" id="toc-generating-infinite-streams" class="nav-link" data-scroll-target="#generating-infinite-streams"><span class="header-section-number">5.4</span> Generating infinite streams</a></li>
+  <li><a href="#generator-expressions" id="toc-generator-expressions" class="nav-link" data-scroll-target="#generator-expressions"><span class="header-section-number">5.5</span> Generator Expressions</a></li>
+  </ul></li>
+  <li><a href="#simple-inheritance" id="toc-simple-inheritance" class="nav-link" data-scroll-target="#simple-inheritance"><span class="header-section-number">6</span> Simple Inheritance</a>
+  <ul class="collapse">
+  <li><a href="#attributes-methods-information-hiding" id="toc-attributes-methods-information-hiding" class="nav-link" data-scroll-target="#attributes-methods-information-hiding"><span class="header-section-number">6.1</span> Attributes, Methods, Information Hiding</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="week10-11.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Weeks 10 and 11</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="object-oriented-programming-oop" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="object-oriented-programming-oop"><span class="header-section-number">1</span> Object-Oriented Programming (OOP)</h2>
+<p>This is a very broad topic: we will only cover a few critical concepts to help us understand OOP in Python.</p>
+<p>Throughout, we will use two running examples to illustrate the concepts: a point in the two-dimensional Euclidean plane and a triangle made up of three such points.</p>
+<ul>
+<li>Classes, Objects and Constructors</li>
+<li>Instance Attributes and Methods</li>
+<li>Special Methods</li>
+<li>Iterators and Generators</li>
+<li>Simple Inheritance</li>
+</ul>
+</section>
+<section id="classes-objects-and-constructors" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="classes-objects-and-constructors"><span class="header-section-number">2</span> Classes, Objects and Constructors</h2>
+<p>A class is essentially a <strong>datatype</strong>: it consists of a domain (the possible <strong>object instances</strong> of the class) coupled with the different operations (or <strong>methods</strong>) that can be used with the objects.</p>
+<p>In Python, a class definition provides the framework for specifying a way to <strong>construct</strong> new object instances and to delineate all the <strong>attributes</strong> of such instances, including the <strong>methods</strong> that the objects can use to interact with the world.</p>
+<p>The entry-point into the definition is the <strong><code>__init__</code></strong> method (Python classes have several predefined hooks for such <em>special methods</em>: their names begin and end with <strong>two underscores</strong> and hence, are often referred to informally as <em>double-under</em> or <em>dunder</em> methods).</p>
+<p>Here is an example of a class for creating points in 2D Euclidean space: we will build up the definition piece-by-piece to illustrate several key features/principles of the OOP paradigm.</p>
+<div class="cell" data-execution_count="1">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Point:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, x, y):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Defines a 2D Euclidean point</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.x <span class="op">=</span> <span class="bu">float</span>(x)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y <span class="op">=</span> <span class="bu">float</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="instance-attributes-and-methods" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="instance-attributes-and-methods"><span class="header-section-number">3</span> Instance Attributes and Methods</h2>
+<p>So far, the definition just tells us how to construct a new <code>Point</code> instance via the <strong>constructor</strong> method <code>__init__</code>. This is an <em>instance</em> method: every instance including a nascent one that is just coming to life passes an <em>implicit</em> first argument (traditionally named <code>self</code>) to such a function. In addition, the function specifies two arguments that are used to <strong>set</strong> the <strong>instance attributes</strong> <code>x</code> and <code>y</code>, the Cartesian coordinates of the point.</p>
+<p>The attributes <code>x</code> and <code>y</code> belong to the instance: they can be used within the class definition, for example, if we wanted to define <em>polar coordinates</em> <span class="math inline">(r, \theta)</span> for the point with <span class="math inline">r = \sqrt{x^2 + y^2}</span> and ~<span class="math inline">\theta = \arctan{y/x}</span>. We can do this by using a method that provides the polar coordinates:</p>
+<div class="cell" data-execution_count="2">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Point:</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, x, y):</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_polar(<span class="va">self</span>):</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Returns polar coordinates (r, theta)"""</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> (math.sqrt(<span class="va">self</span>.x <span class="op">**</span> <span class="dv">2</span> <span class="op">+</span> <span class="va">self</span>.y <span class="op">**</span> <span class="dv">2</span>), math.atan(<span class="va">self</span>.y <span class="op">/</span> <span class="va">self</span>.x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Now, a <code>Point</code> object has two <strong>public</strong> attributes <code>x</code> and <code>y</code> and one <strong>public</strong> method <code>get_polar</code>. Any code can access these via a <code>Point</code> object.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Python does not have the same notion of <em>privacy</em> or <em>information-hiding</em> as in other OOP langauges: to indicate that some attribute (or method) is <strong>non-public</strong> (i.e., should not be used by other code), Python uses the <em>convention</em> of naming it with a name that starts with an underscore (<code>_</code>).</p>
+</div>
+</div>
+<p>For example, we could modify the current definition so that direct access to the coordinates is discouraged, but is provided through so-called <em>getter</em> and <em>setter</em> methods:</p>
+<div class="cell" data-execution_count="3">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> sqrt, atan</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Point:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, x, y):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.set_x(x)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.set_y(y)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_polar(<span class="va">self</span>):</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Returns polar coordinates (r, theta)"""</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        r <span class="op">=</span> sqrt(<span class="va">self</span>.__x <span class="op">**</span> <span class="dv">2</span> <span class="op">+</span> <span class="va">self</span>.__y <span class="op">**</span> <span class="dv">2</span>)  <span class="co"># distance from origin</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> atan(<span class="va">self</span>.__y <span class="op">/</span> <span class="va">self</span>.__x)  <span class="co"># angle  the x-axis</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> r, theta</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> set_x(<span class="va">self</span>, x):</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__x <span class="op">=</span> <span class="bu">float</span>(x)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_x(<span class="va">self</span>):</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.__x</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Any code that tries to access the <code>__x</code> or <code>__y</code> attributes will raise an <code>AttributeError</code> exception, which is Python’s way of indicating that these are non-public. Note that the attributes can still be used by <strong>other parts of the class code</strong> without a problem.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Everything in Python is an object! This includes classes themselves: for instance, <code>list</code>, <code>int</code>, <code>function</code> etc. are classes but they are also <em>class objects</em>. Be sure to appreciate the distinction between <em>class instances</em> (members of the domain of a class, e.g.&nbsp;the integers 0, 1, 2 etc. that are instances of <code>int</code>) and <em>class objects</em> (e.g., the datatype <code>int</code>).</p>
+</div>
+</div>
+</section>
+<section id="special-methods" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="special-methods"><span class="header-section-number">4</span> Special Methods</h2>
+<p>There are some methods that can be re-defined in a class definition to ensure that the corresponding protocol is executed correctly. For example, it would be natural to <strong>print</strong> a meaningful *string representation of a <code>Point</code> object and this can be done by re-defining the <code>__str__</code> method: the protocol is that when an object has to be printed, its <code>__str__</code> method is consulted to produce the desired string that needs to be output to the standard output!</p>
+<p>In the same way, it would be meaningful to <em>add</em> or <em>subtract</em> two <code>Point</code> objects using the <code>+</code> or <code>-</code> arithmetic operators but ensuring that the operations <em>mean</em> that the <code>x</code> and <code>y</code> coordinates are added (or subtracted) to yield a new <code>Point</code>!</p>
+<div class="cell" data-execution_count="4">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Point:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, x, y):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        ...</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_polar(<span class="va">self</span>):</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        ...</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> set_x(<span class="va">self</span>, x):</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        ...</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_x(<span class="va">self</span>):</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        ...</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Returns a printable representation"""</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f'Point (x=</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>__x<span class="sc">}</span><span class="ss">, y=</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>__y<span class="sc">}</span><span class="ss">)'</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__add__</span>(<span class="va">self</span>, other):</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Returns a new Point that is the sum of self and other"""</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> Point(<span class="va">self</span>.__x <span class="op">+</span> other.get_x(), <span class="va">self</span>.__y <span class="op">+</span> other.get_y())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>We can now use these methods as follows:</p>
+<div class="cell" data-execution_count="5">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>point_1 <span class="op">=</span> Point(<span class="fl">2.0</span>, <span class="fl">5.0</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>point_2 <span class="op">=</span> Point(<span class="fl">3.0</span>, <span class="op">-</span><span class="fl">1.0</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(point_1)  <span class="co"># should print Point(x=2.0, y =5.0)</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(point_1 <span class="op">+</span> point_2)  <span class="co"># should print Point(x=5.0, y=4.0)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="iterators-and-generators" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="iterators-and-generators"><span class="header-section-number">5</span> Iterators and Generators</h2>
+<p>We now come to one of the coolest features of Python: a standard <strong>iteration</strong> protocol for stepping through an iterable collection. The protocol works as follows:</p>
+<ul>
+<li><p>Applying the <strong><code>iter</code></strong> function to the collection, we get an <strong>iterator</strong> object.</p></li>
+<li><p>The iterator is like a <em>cursor</em>: on demand, it steps to the next element from the iterable. This is done by calling the built-in <strong><code>next</code></strong> function <em>on the iterator object</em>.</p></li>
+<li><p>when no further elements are available, the <code>next</code> function raises the <strong><code>StopIteration</code></strong> exception.</p></li>
+</ul>
+<p>Study the following example to see what really happens under the hood when we run a <code>for</code> loop!</p>
+<div class="cell" data-execution_count="6">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> z <span class="op">=</span> [<span class="fl">2.0</span>, <span class="st">'x'</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> z_iter <span class="op">=</span> <span class="bu">iter</span>(z)   <span class="co"># initialize an iterator over the list</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">next</span>(z_iter)   <span class="co"># get the first element from the list</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fl">2.0</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">next</span>(z_iter)   <span class="co"># then, the next one</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">'x'</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">next</span>(z_iter)   <span class="co"># Nothing left in the list, so signal the end of iteration!</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>Traceback (most recent call last):</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  File <span class="st">"&lt;stdin&gt;"</span>, line <span class="dv">1</span>, <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="pp">StopIteration</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> element <span class="kw">in</span> z:   <span class="co"># the entire protocol from start to finish.</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    element</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fl">2.0</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">'x'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>In summary, a <code>for</code> loop is designed to run the iteration protocol on the target iterable: the target variable successively takes on the <code>next</code> function’s return values. When the <code>StopIteration</code> exception is raised, the loop quits!</p>
+<p>Any class whose instances are meant to be <em>collections</em> can be <strong>programmed to implement the iteration protocol</strong> as follows:</p>
+<ul>
+<li><p>In the class, define an <strong><code>__iter__</code></strong> method to return an iterator object.</p></li>
+<li><p>ensure that <strong>the iterator object’s class</strong> implements a <strong><code>__next__</code></strong> method that correctly advances through the elements of the collection in the appropriate manner.</p></li>
+</ul>
+<p>We can illustrate this using a <code>Triangle</code> class whose instances each <em>contain</em> three <code>Point</code>s making up the three corners of the triangle. Now, suppose that we want the iterator for the class to step through the corners of the <code>Triangle</code> in <em>non-decreasing order of distance from the origin</em>. So, for example, if the corners <code>x</code>, <code>y</code>, and <code>z</code> of a <code>Triangle</code> object are located at coordinates (5, -1), (-1, 1) and (2, 2) respectively, we then wish to iterate through them in the order <code>y</code>, then <code>z</code> and finally <code>x</code>. We will show three different versions of the <code>Triangle</code> class to illustrate this.</p>
+<section id="triangle-version-1" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="triangle-version-1"><span class="header-section-number">5.1</span> Triangle: Version 1</h3>
+<p>The iterator object is the triangle instance itself, and hence we need to have the <code>Triangle</code> class define both an <code>__iter__</code> and <code>__next__</code> method! The <code>__iter__</code> method ensures that we first set up a non-public list of corners sorted by distance (the <code>get_polar</code> method for <code>Point</code> objects returns a tuple with its first component being the distance from the origin).</p>
+<div class="cell" data-execution_count="7">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Point:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Triangle:  <span class="co"># Version 1</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, pt1, pt2, pt3):</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Initializes three Point objects to be the corners"""</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.corners <span class="op">=</span> [pt1, pt2, pt3]</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__iter__</span>(<span class="va">self</span>):</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__cursor <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__sorted <span class="op">=</span> <span class="bu">sorted</span>(<span class="va">self</span>.corners,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>                               key<span class="op">=</span><span class="kw">lambda</span> pt: pt.get_polar()[<span class="dv">0</span>])</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__next__</span>(<span class="va">self</span>):</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__cursor <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.__cursor <span class="op">==</span> <span class="dv">3</span>:</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">StopIteration</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.__sorted[<span class="va">self</span>.__cursor]</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>trng <span class="op">=</span> Triangle(Point(<span class="dv">5</span>, <span class="op">-</span><span class="dv">1</span>), Point(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), Point(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> point <span class="kw">in</span> trng:</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>point<span class="sc">}</span><span class="ss"> is at distance </span><span class="sc">{</span>point<span class="sc">.</span>get_polar()[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> from origin'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="triangle-version-2" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="triangle-version-2"><span class="header-section-number">5.2</span> Triangle: Version 2</h3>
+<p>If we instead make use of the builtin <code>enumerate</code> function to have <code>__iter__</code> return an <em>enumeration</em> of the list of corners (after sorting the list in place by distance to the origin), then the <code>Triangle</code> class does not need to implement its own <code>__next__</code> method. The enumeration already has the loop protocol built into it!</p>
+<p>Notice, however, the subtle change in the target variable in the loop: since the iterator is an enumerate object, the variable is a tuple made up of the index and the triangle corner.</p>
+<div class="cell" data-execution_count="8">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Triangle:  <span class="co"># Version 2</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, pt1, pt2, pt3):</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Initializes three Point objects to be the corners"""</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.corners <span class="op">=</span> [pt1, pt2, pt3]</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__iter__</span>(<span class="va">self</span>):</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">sorted</span>(<span class="va">self</span>.corners, key<span class="op">=</span><span class="kw">lambda</span> pt: pt.get_polar()[<span class="dv">0</span>])</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">enumerate</span>(<span class="va">self</span>.corners)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>trng <span class="op">=</span> Triangle(Point(<span class="dv">5</span>, <span class="op">-</span><span class="dv">1</span>), Point(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), Point(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _, point <span class="kw">in</span> trng:</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>point<span class="sc">}</span><span class="ss"> is at distance </span><span class="sc">{</span>point<span class="sc">.</span>get_polar()[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> from origin'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="generator-functions-and-expressions" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="generator-functions-and-expressions"><span class="header-section-number">5.3</span> Generator functions and expressions</h3>
+<p>A <strong>generator</strong> function creates a <strong>lazy iterator</strong>: it is especially useful in cases where we need to iterate through a large (even infinite) collection without explicitly needing the entire collection to be available.</p>
+<p>The <code>generated</code> object implements the iteration protocol as follows. The loop in the main body of the generator function is essentially like the <code>__next__</code> function in the iteration protocol, except that when a <code>yield</code> statement is encountered, it sends the calling code the object that is yielded and then <em>suspends itself</em> until the next (lazy) iteration. Here is an example.</p>
+<section id="triangle-version-3" class="level4" data-number="5.3.1">
+<h4 data-number="5.3.1" class="anchored" data-anchor-id="triangle-version-3"><span class="header-section-number">5.3.1</span> Triangle: Version 3</h4>
+<div class="cell" data-execution_count="9">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> corner_genrtr(triangle):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.__sorted <span class="op">=</span> <span class="bu">sorted</span>(triangle.corners,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                           key<span class="op">=</span><span class="kw">lambda</span> pt: pt.get_polar()[<span class="dv">0</span>])</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> corner <span class="kw">in</span> self__sorted:</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">yield</span> corner</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Triangle:  <span class="co"># Version 3</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, pt1, pt2, pt3):</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Initializes three Point objects to be the corners"""</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.corners <span class="op">=</span> [pt1, pt2, pt3]</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__iter__</span>(<span class="va">self</span>):</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> corner_genrtr(<span class="va">self</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>trng <span class="op">=</span> Triangle(Point(<span class="dv">5</span>, <span class="op">-</span><span class="dv">1</span>), Point(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), Point(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> point <span class="kw">in</span> <span class="bu">iter</span>(trng):</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>point<span class="sc">}</span><span class="ss"> is at distance </span><span class="sc">{</span>point<span class="sc">.</span>get_polar()[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> from origin'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Observe that the <code>__iter__</code> method returns an object that is defined <strong>outside the class</strong>! This means that we can have multiple iterators being used on the same <code>Triangle</code> object simultaneously without the iterations interfering with one another.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="generating-infinite-streams" class="level3" data-number="5.4">
+<h3 data-number="5.4" class="anchored" data-anchor-id="generating-infinite-streams"><span class="header-section-number">5.4</span> Generating infinite streams</h3>
+<p>Since generator functions create lazy iterators, we can produce elements from an infinite stream on demand, without explicitly having to store such a stream, which would be impossible anyway! Here is an example:</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gen_evens():</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    val <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">yield</span> val  <span class="co"># suspends itself after this!</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        val <span class="op">+=</span> <span class="dv">2</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>evens <span class="op">=</span> gen_evens()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, <code>evens</code> will produce the even numbers 0, 2, 4 etc. in sequence. Note the infinite loop in the definition: we will never have a problem with it because the iteration is lazy. The next even number will be produced on demand only when the <code>next</code> function is applied to <code>evens</code>.</p>
+<p>Here’s another example: a generator that returns an iterator for the Fibonacci sequence:</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fibo_iterator():</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    current, next_val <span class="op">=</span> <span class="dv">0</span>, <span class="dv">1</span>   <span class="co"># the frst two Fibonacci sequence numbers</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">yield</span> current</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        current, next_val <span class="op">=</span> next_val, current <span class="op">+</span> next_val</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>fibonacci <span class="op">=</span> fibo_iterator()</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>first_15 <span class="op">=</span> [<span class="bu">str</span>(<span class="bu">next</span>(fibonacci)) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">15</span>)]</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">' '</span>. join(first_15))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="generator-expressions" class="level3" data-number="5.5">
+<h3 data-number="5.5" class="anchored" data-anchor-id="generator-expressions"><span class="header-section-number">5.5</span> Generator Expressions</h3>
+<p>In many situations, we want to create lazy sequences instead of list comprehensions either (a) to minimize memory usage or (b) to transform a potentially infinite stream of data in a pipeline. In such cases, generator expressions are extremely useful.</p>
+<p>For example, suppose we wish to produce, on demand, a stream of Fibonacci numbers in increasing order that are also divisible by 7. The following generator expression does the trick (it looks quite similar in syntax to a list comprehension but with parentheses replacing square braces):</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fibonacci <span class="op">=</span> fibo_iterator()</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>fibs_div_by_7 <span class="op">=</span> (number <span class="cf">for</span> number <span class="kw">in</span> fibonacci <span class="cf">if</span> number <span class="op">%</span> <span class="dv">7</span> <span class="op">==</span> <span class="dv">0</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">next</span>(fibs_div_by_7))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that <code>fibs_div_by_7</code>, just like <code>fibonacci</code>, is a lazy iterator for an infinite stream.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Be aware of a few limitations of iterators:</p>
+<ul>
+<li><p>You can only iterate <strong>once</strong> over a collection with an iterator: it cannot be reset. A new iterator has to be created for this purpose.</p></li>
+<li><p>Iterators can only advance forward, unlike <code>next</code>, there is no <code>previous</code> builtin function (nor a corresponding <code>__prev__</code> kind of special method). If the collection is a finite sequence, then the <code>reversed</code> builtin function can be used to create an iterator that iterates backwards over a collection.</p></li>
+<li><p>while iterators and generators resemble sequences, one cannot use builtin functions like <code>len</code> to compute their length, or index into them using <code>[]</code> notation.</p></li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="simple-inheritance" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="simple-inheritance"><span class="header-section-number">6</span> Simple Inheritance</h2>
+<p>Large Python projects often have many classes that share common attributes and beavior, or may have small modifications in he way that they behave from other classes. To link such classes, there are two primary mechanisms: <strong>composition</strong> and <strong>inheritance</strong>. We saw an example of the former above: three <code>Point</code> objects are composed to form a <code>Triangle</code>. The latter mechanism, viz.&nbsp;inheritance, helps us organize code in a manner that avoids repetition and helps us <em>classify</em> datatypes in a natural way based on their properties.</p>
+<p>For example, a triangle and a rectangle are dissimilar: one has three sides, the other four. They also have similarities in that both are examples of <em>polygons</em> in the plane and have areas that are related to the coordinates of the points forming the corners (see the <a href="https://en.wikipedia.org/wiki/Shoelace_formula">Shoelace Formula</a>)! So, a triangle <strong>is a</strong> polygon, as is a rectangle. On the other hand, a circle is not a polygon (well, in the limit it <em>is</em> one, but we’ll let that go…) but both circles and polygons are examples of planar regions that have an <em>area</em>.</p>
+<p>One of the primary goals of OOP is to facilitate systematic development of code that works consistently across such a <strong>hierarchy</strong> of classes. For instance, the hierarchy of planar regions identified in the previous paragraph might look something like this (with an auxiliary <code>Point</code> class defined as above):</p>
+<pre><code>Point
+
+PlanarRegion
+    Oval
+        Circle
+    Polygon
+        Triangle
+        Rectangle</code></pre>
+<p>In OOP terminology, <code>Polygon</code> is the <strong>superclass</strong> of <code>Triangle</code> and <code>Rectangle</code>: they can both share the methods of the <code>Polygon</code> class but can add specialized attributes and methods in their own definitions that provide distinctive state and behavior. Thus, the <code>Triangle</code> class is a <strong>subclass</strong> of <code>Polygon</code>; in turn, <code>Polygon</code> is a subclass of <code>PlanarRegion</code>.</p>
+<p>The <strong>Substitution Principle</strong> in OOP asserts that any subclass object can be syntactically substituted in code where a superclass object is expected. For example, every <code>Polygon</code> object has a length (number of sides) so it is syntactically correct to expect a <code>Triangle</code> object to have a length. The reverse is not true: while a <code>Circle</code> is an <code>Oval</code>, an oval object has no radius (it has a major and minor axis that are not necessarily equal) and <em>cannot be substituted</em> in a place where we expect to use a circle.</p>
+<section id="attributes-methods-information-hiding" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="attributes-methods-information-hiding"><span class="header-section-number">6.1</span> Attributes, Methods, Information Hiding</h3>
+<p>Building out the hierarchy depicted above, we observe some features of Python that help with creating rich inheritance hierarchies.</p>
+<ol type="1">
+<li><p><code>PlanarRegion</code> is an <strong>abstract</strong> class - we cannot <em>instantiate</em> an object directly as a <code>PlanarRegion</code> object. The only purpose of the class is to <em>root</em> the hierarchy, and to specify that all planar shapes that are derived from this class must define their own <em>concrete</em> <strong><code>area</code></strong> method.</p></li>
+<li><p>Sibling classes like <code>Oval</code> and <code>Polygon</code> share the <code>area</code> method (because they inherit it from <code>PlanarRegion</code>) but also have bespoke attributes: ovals have major and minor axes, while polygons have corners.</p></li>
+<li><p>It is often very easy to construct an instance of a subclass like <code>Circle</code> by invoking the constructor of the superclass (<code>Oval</code>).</p></li>
+<li><p>Attributes whose names begin with two underscores are non-public, and are effectively <strong>hidden</strong> from other code, including from the subclasses! For instance, a <code>Circle</code> object cannot access the <code>__sem_major</code> attribute in its parent class <code>Oval</code>. This mechanism does has a backdoor (since Python does not have the same philosophy of public-protected-private access that other OOP languages like Java enforce for information hiding).</p></li>
+</ol>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> abc <span class="im">import</span> ABC, abstractmethod</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> PlanarRegion(ABC):</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""An abstract base class (ABC) for planar regios"""</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">@abstractmethod</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> area(<span class="va">self</span>):</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">NotImplementedError</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Oval(PlanarRegion):</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""An x-y axis aligned oval"""</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, semi_major_axis, semi_minor_axis):</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__semi_major <span class="op">=</span> semi_major_axis</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__semi_minor <span class="op">=</span> semi_minor_axis</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> area(<span class="va">self</span>):</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> math.pi <span class="op">*</span> <span class="va">self</span>.__semi_major <span class="op">*</span> <span class="va">self</span>.__semi_minor</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Circle(PlanarRegion):</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, radius):</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.set_radius(radius)</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> set_radius(<span class="va">self</span>, radius)</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(radius, radius)</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__radius <span class="op">=</span> radius</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_radius(<span class="va">self</span>):</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.__radius</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_diameter(<span class="va">self</span>):</span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">2</span> <span class="op">*</span> <span class="va">self</span>.get_radius()</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Polygon(PlanarRegion):</span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""A polygonal shape specified by corners in sequence with the</span></span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a><span class="co">    assumption that the sides of the polygons do not self-intersect.</span></span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, <span class="op">*</span>corners):</span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Set the corners of the polygon in order"""</span></span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__corners <span class="op">=</span> <span class="bu">list</span>(corners)  <span class="co"># each corner is a Point</span></span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> area(<span class="va">self</span>):</span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Implementation of the shoelace formula"""</span></span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> perimeter(<span class="va">self</span>):</span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Implement this for practice!"""</span></span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Triangle(Polygon):</span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, pt1, pt2, pt3):</span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(pt1, pt2, pt3)</span>
+<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Rectangle(Polygon):</span>
+<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, pt1, pt2, pt3, pt4):</span>
+<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Implement this: ensure that the sides form a rectangle!</span></span>
+<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(pt1, pt2, pt3, pt4)</span>
+<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> diagonal(<span class="va">self</span>):</span>
+<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Returns the length of the diagonal of the rectangle"""</span></span>
+<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Implement this</span></span>
+<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

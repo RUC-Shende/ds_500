@@ -1,0 +1,79 @@
+[
+  {
+    "objectID": "syllabus.html",
+    "href": "syllabus.html",
+    "title": "Syllabus (Fall 2023)",
+    "section": "",
+    "text": "Catalog Number\n56:219:500 (also cross-listed as 56:198:500 and 56:121:531)\n\n\nInstructor\nSunil Shende\n\n\nSchedule\nMW from 3:45pm to 5:05pm\n\n\nClassroom\nCS-109 Cooper Classroom Building\n\n\nOffice Hours\nOn Zoom MW from 10am to 11am\n\n\nEmail\nshende AT camden DOT rutgers DOT edu"
+  },
+  {
+    "objectID": "syllabus.html#course-information",
+    "href": "syllabus.html#course-information",
+    "title": "Syllabus (Fall 2023)",
+    "section": "",
+    "text": "Catalog Number\n56:219:500 (also cross-listed as 56:198:500 and 56:121:531)\n\n\nInstructor\nSunil Shende\n\n\nSchedule\nMW from 3:45pm to 5:05pm\n\n\nClassroom\nCS-109 Cooper Classroom Building\n\n\nOffice Hours\nOn Zoom MW from 10am to 11am\n\n\nEmail\nshende AT camden DOT rutgers DOT edu"
+  },
+  {
+    "objectID": "syllabus.html#learning-outcomes",
+    "href": "syllabus.html#learning-outcomes",
+    "title": "Syllabus (Fall 2023)",
+    "section": "Learning Outcomes",
+    "text": "Learning Outcomes\nStudents are not expected to have prior programming experience. In general, by the end of the course, it is expected that successful students will:\n\nunderstand and use appropriate programming constructs for developing Python code\ndocument and test code cleanly and robustly\napply computational and inferential thinking in program construction\nuse specific built-in Python libraries and third-party libraries for data science for computational problem solving"
+  },
+  {
+    "objectID": "syllabus.html#textbook",
+    "href": "syllabus.html#textbook",
+    "title": "Syllabus (Fall 2023)",
+    "section": "Textbook",
+    "text": "Textbook\nWe will use the following book as our primary textbook:\n\nIntroduction to Computation and Programming Using Python, third Edition: With Application to Computational Modeling and Understanding Data, by John V. Guttag. Published by The MIT Press, 2021.\n\nYou can buy the book but it is also available online from the Rutgers Libraries site: please use your Rutgers NetID to login and access it. Please do not download and print book chapters - save the planet by not wasting unnecessary paper!\nAs a way of supplementing and complementing material from the textbook, I will also provide additional notes, links to topics on the internet or links to relevant videos."
+  },
+  {
+    "objectID": "syllabus.html#logistics",
+    "href": "syllabus.html#logistics",
+    "title": "Syllabus (Fall 2023)",
+    "section": "Logistics",
+    "text": "Logistics\nWe will be using the Rutgers Canvas site for the course as well as Github or Google Drive to share class material. The class will run in semi-flipped mode as follows:\n\non Wednesdays, we will have a traditional lecture alongside programming and problem solving, and\non Mondays, you are expected to arrive to class having already read assigned readings and watched assigned videos (if any) for that week. In class, you will work on specific programming programming problems as a means to develop mastery, and you will submit these programs for credit."
+  },
+  {
+    "objectID": "syllabus.html#tentative-schedule-of-topics",
+    "href": "syllabus.html#tentative-schedule-of-topics",
+    "title": "Syllabus (Fall 2023)",
+    "section": "Tentative Schedule of Topics",
+    "text": "Tentative Schedule of Topics\nPlease note that this schedule is tentative and subject to change. The weeks refer to two consecutive class sessions and not to calendar weeks, e.g. Week 1 below includes Wednesday (Sep 6) and Monday (Sep 11).\n\n\n\nWeek\nTopics\n\n\n\n\n1\nIntroduction: Variables, Datatypes, Objects; Environments\n\n\n2\nFlow of Control: Loops, Conditionals and Matching\n\n\n3\nFunctions; Exceptions; Documenting code\n\n\n4\nFunctional abstraction; Namespaces; Lists and Tuples\n\n\n5\nSequences; Dictionaries; Iterables\n\n\n6\nReading and writing files; Testing code\n\n\n7\nObject-oriented programming: Classes\n\n\n8\nUsing built-in classes and designing classes\n\n\n9\nSpecial methods; Iterators & Generators; Protocols\n\n\n10\nData Science with numpy, scipy, pandas\n\n\n11\nPlotting and Visualizing Data: matplotlib\n\n\n12\nRandomness, Sampling and Distributions\n\n\n13\nSimulation, Hypothesis Testing\n\n\n14\nReview"
+  },
+  {
+    "objectID": "syllabus.html#grading",
+    "href": "syllabus.html#grading",
+    "title": "Syllabus (Fall 2023)",
+    "section": "Grading",
+    "text": "Grading\nThe overall grade will be apportioned based on the following assessments:\n\n30% Bi-weekly homework (drop worst grade out of 7)\n30% Weekly In-Class Assessments (omit worst 2 grades)\n40% Two in-class midterm exams\n\nExcept in the most extenuating circumstances, there will be no makeup opportunities for exams or in-class assessments. Late submission of homework problem sets will generally not be entertained except in the case of a verifiable, documented emergency (medical or personal). If you require special accommodation, e.g., extra time on the exams or in-class assessments, please obtain appropriate documents from the Division of Student Affairs.\n\nLetter grade rubric\nI generally use (with some minor variation at my discretion) the following rubric:\n\nan A grade for overall points above 85%\na B+ grade in the range 75 – 85%\na B grade in the range 65 – 75%\na C+ grade in the range 60 – 65%\na C grade in the range 50 – 60%\n\nAnything below 50% is considered an unsatisfactory or failing grade (either a D or F grade)."
+  },
+  {
+    "objectID": "syllabus.html#academic-integrity",
+    "href": "syllabus.html#academic-integrity",
+    "title": "Syllabus (Fall 2023)",
+    "section": "Academic Integrity",
+    "text": "Academic Integrity\nSome of the in-class assessments will be collaborative, while others will need to be completed individually. There are lots of places and mechanisms whereby you can get help to solve your homework problems, but be warned that there are many gaps in reasoning and incorrect solutions in the wild (including code that you may find on websites or after consulting your favorite large language model). If challenged, you will have to be prepared to clearly explain your code and/or written submissions to my satisfaction. This is a graduate course, and a large part of being successful in graduate school lies in recognizing that learning does not come from mimicry or plagiarism.\nI strongly encourage you to learn from other books, internet resources like StackOverflow, and even by prompting LLMs like GPT-X/ CoPilot/Bard. But, you must cite your sources at all times! Copying from someone or somewhere without citation or simply allowing your work to be copied by others constitutes cheating, as does blind transcription from sources including books, LLM transcripts and the internet at large. You are ultimately responsible for what you turn in: if it is determined that your work (even with citations) is derivative and you haven’t completely understood what you have submitted, it will count as an academic integrity violation and will carry pretty serious penalties.\nI will follow the Rutgers Academic Integrity Policy and Student Code of Conduct to deal with suspected violations. Please read and understand the policy carefully."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "This is the website for the Fall 2023 edition of Data Science 500 (56:219:500). The course is also cross-listed as CS 500 (56:198:500) and CCIB 530 (56:121:530)."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data Science 500",
+    "section": "",
+    "text": "This course is cross-listed in three graduate programs at Rutgers-Camden: Data Science, CCIB and Computer Science. The overall goal is to provide a foundational introduction to programming in Python in a variety of Data Science and scientific computing application contexts. More broadly, students will be exposed to computational thinking, the basics of statistical inference and reasoning about data, and to software engineering best practices in program development, testing and documentation."
+  },
+  {
+    "objectID": "index.html#syllabus",
+    "href": "index.html#syllabus",
+    "title": "Data Science 500",
+    "section": "SYLLABUS",
+    "text": "SYLLABUS\n\nFall 2023 Syllabus"
+  }
+]
